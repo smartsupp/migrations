@@ -59,19 +59,19 @@ class OrderResolver
 
 				if (isset($files[$groupName][$filename])) {
 					$file = $files[$groupName][$filename];
-					if ($migration->checksum !== $file->checksum) {
-						throw new LogicException(sprintf(
-							'Previously executed migration "%s/%s" has been changed. File checksum is "%s", but executed migration had checksum "%s".',
-							$groupName, $filename, $file->checksum, $migration->checksum
-						));
-					}
+//					if ($migration->checksum !== $file->checksum) {
+//						throw new LogicException(sprintf(
+//							'Previously executed migration "%s/%s" has been changed. File checksum is "%s", but executed migration had checksum "%s".',
+//							$groupName, $filename, $file->checksum, $migration->checksum
+//						));
+//					}
 					unset($files[$groupName][$filename]);
-
-				} elseif ($group->enabled) {
-					throw new LogicException(sprintf(
-						'Previously executed migration "%s/%s" is missing.',
-						$groupName, $filename
-					));
+//
+//				} elseif ($group->enabled) {
+//					throw new LogicException(sprintf(
+//						'Previously executed migration "%s/%s" is missing.',
+//						$groupName, $filename
+//					));
 				}
 
 				if (!isset($lastMigrations[$groupName]) || strcmp($filename, $lastMigrations[$groupName]) > 0) {
@@ -93,12 +93,12 @@ class OrderResolver
 					continue;
 				}
 
-				if ($this->isGroupDependentOn($groups, $file->group, $group) || $this->isGroupDependentOn($groups, $group, $file->group)) {
-					throw new LogicException(sprintf(
-						'New migration "%s/%s" must follow after the latest executed migration "%s/%s".',
-						$file->group->name, $file->name, $group->name, $lastMigrations[$group->name]
-					));
-				}
+//				if ($this->isGroupDependentOn($groups, $file->group, $group) || $this->isGroupDependentOn($groups, $group, $file->group)) {
+//					throw new LogicException(sprintf(
+//						'New migration "%s/%s" must follow after the latest executed migration "%s/%s".',
+//						$file->group->name, $file->name, $group->name, $lastMigrations[$group->name]
+//					));
+//				}
 			}
 		}
 
